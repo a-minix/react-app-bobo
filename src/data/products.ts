@@ -1,0 +1,77 @@
+export type TypeProduct = {
+  id: string;
+  name: string;
+  category: string;
+  colors: string[];
+  accent: string;
+  prices: number[];
+  rating: number;
+  reviews: number;
+  imageUrl?: string;
+  limited?: boolean;
+};
+
+export const products: TypeProduct[] = [
+  {
+    id: 'aria-runner',
+    name: 'Aria Runner',
+    category: 'Running',
+    colors: ['#ebe7e0', '#243366', '#c9b088'],
+    accent: '#2f4fe0',
+    prices: [119, 129, 139],
+    rating: 4.6,
+    reviews: 128,
+    limited: true,
+  },
+  {
+    id: 'vento-trail',
+    name: 'Vento Trail',
+    category: 'Trail',
+    colors: ['#5d6e3f', '#7b746a'],
+    accent: '#e6d8b2',
+    prices: [139],
+    rating: 4.4,
+    reviews: 76,
+  },
+  {
+    id: 'lago-low',
+    name: 'Lago Low',
+    category: 'Lifestyle',
+    colors: ['#f1efe9', '#1f1f22', '#9bb39b'],
+    accent: '#1d1d1f',
+    prices: [89, 99, 109],
+    rating: 4.8,
+    reviews: 214,
+    limited: true,
+  },
+  {
+    id: 'cima-pro',
+    name: 'Cima Pro',
+    category: 'Trail',
+    colors: ['#d9692b', '#2b3a4a'],
+    accent: '#f3e4c8',
+    prices: [159],
+    rating: 4.7,
+    reviews: 58,
+  },
+  {
+    id: 'brezza-flex',
+    name: 'Brezza Flex',
+    category: 'Running',
+    colors: ['#cfe0f0', '#1f1f22', '#e8b4a0'],
+    accent: '#e45d4b',
+    prices: [94.5, 104.5, 114.5],
+    rating: 4.2,
+    reviews: 96,
+  },
+  {
+    id: 'piazza-classic',
+    name: 'Piazza Classic',
+    category: 'Lifestyle',
+    colors: ['#e9dfcf'],
+    accent: '#8a5a3c',
+    prices: [79],
+    rating: 4.5,
+    reviews: 302,
+  },
+];
