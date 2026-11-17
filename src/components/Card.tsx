@@ -5,7 +5,7 @@ type CardProps = {
   date: Date
 }
 
-const Card = ({ product }: CardProps) => {
+const Card = ({product}: CardProps) => {
   return (
     <div className="card">
       <img src={`../../public/${product.imageUrl}.png`} alt={product.name} />

@@ -121,8 +121,8 @@ const PageCatalog = () => {
       </div>
       <div className="cards-container">
         {
-          productsToShow.map(product => (
-            <Card key={product.id} product={product} date={new Date()} />
+          productsToShow.map((product, index) => (
+            <Card key={product.id} product={product} bgColor={index % 2 ? "red" : "blue"} />
           ))
         }
       </div>
