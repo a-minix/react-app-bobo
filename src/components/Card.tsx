@@ -2,10 +2,9 @@ import type { TypeProduct } from "../data/products"
 
 type CardProps = {
   product: TypeProduct;
-  date: Date
 }
 
-const Card = ({product}: CardProps) => {
+const Card = ({ product }: CardProps) => {
   return (
     <div className="card">
       <img src={`../../public/${product.imageUrl}.png`} alt={product.name} />

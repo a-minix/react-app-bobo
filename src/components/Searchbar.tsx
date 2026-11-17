@@ -5,9 +5,7 @@ type SearchbarProps = {
 
 const Searchbar = ({ handleSearch }: SearchbarProps) => {
   return (
-    <div>
-      <input type="text" placeholder="🕵️‍♀️" onChange={(e) => handleSearch(e.target.value)} />
-    </div>
+    <input type="text" placeholder="🕵️‍♀️" onChange={(e) => handleSearch(e.target.value)} />
   )
 }
 

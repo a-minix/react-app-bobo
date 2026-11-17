@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { TypeProduct } from "../data/products";
-import Card from "./Card";
+import CatalogList from "./CatalogList";
 import OrderProducts from "./OrderProducts";
 import Searchbar from "./Searchbar";
 
@@ -76,56 +76,54 @@ export type TypeGroupByOpts = "none" | "price-asc" | "price-desc" | "name-asc" |
 
 const PageCatalog = () => {
 
-  const [orderBy, setOrderBy] = useState<TypeGroupByOpts>("none")
-  const [search, setSearch] = useState("")
-
-
-  const handleOrderBy = (opt: TypeGroupByOpts) => {
-    setOrderBy(opt)
-  }
+  const [prodotti, setProdotti] = useState(products)
 
   const handleSearch = (input: string) => {
-    setSearch(input)
+    setProdotti([...products].filter(prod => prod.name.toLocaleLowerCase().includes(input.toLocaleLowerCase())))
   }
 
-  let productsToShow = products
+  const handleOrderBy = (opt: TypeGroupByOpts) => {
+    if (opt === "name-asc") {
+      const prodNameAsc = [...products].sort((a, b) => a.name.localeCompare(b.name))
+      console.log("Name Asc: ", prodNameAsc);
+      
+      setProdotti(prodNameAsc)
+      console.log(prodotti);
+    }
+    if (opt === "name-desc") {
+      const prodNameDesc = [...products].sort((a, b) => b.name.localeCompare(a.name))
+      setProdotti(prodNameDesc)
+      console.log(prodotti);
 
-  if (orderBy === "price-asc") {
-    productsToShow = products.sort((a, b) => a.prices[0] - b.prices[0])
+    }
+    if (opt === "price-asc") {
+      const prodPriceAsc = [...products].sort((a, b) => a.prices[0] - b.prices[0])
+      setProdotti(prodPriceAsc)
+      console.log(prodotti);
+
+    }
+    if (opt === "price-desc") {
+      const prodPriceDesc = [...products].sort((a, b) => b.prices[0] - a.prices[0])
+      setProdotti(prodPriceDesc)
+      console.log(prodotti);
+
+    }
+    // else {
+    //   setProdotti(products)
+    //   console.log(prodotti);
+
+    // }
   }
 
-  if (orderBy === "price-desc") {
-    productsToShow = products.sort((a, b) => b.prices[0] - a.prices[0])
-  }
-
-  if (orderBy === "name-asc") {
-    productsToShow = products.sort((a, b) => a.name.localeCompare(b.name))
-  }
-  if (orderBy === "name-desc") {
-    productsToShow = products.sort((a, b) => b.name.localeCompare(a.name))
-  }
-
-  if(search !== "") {
-    productsToShow = products.filter(product => {
-      return product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-    })
-  }
 
   return (
     <div>
-      <h2>{orderBy}</h2>
-      <Searchbar handleSearch={handleSearch} />
       <div className="flexsb">
         <h1>Sneakers {products.length} Modelli</h1>
         <OrderProducts handleOrderBy={handleOrderBy} />
       </div>
-      <div className="cards-container">
-        {
-          productsToShow.map((product, index) => (
-            <Card key={product.id} product={product} bgColor={index % 2 ? "red" : "blue"} />
-          ))
-        }
-      </div>
+      <Searchbar handleSearch={handleSearch} />
+      <CatalogList products={prodotti} />
     </div>
   )
 }

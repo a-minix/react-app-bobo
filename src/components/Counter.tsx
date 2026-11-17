@@ -1,24 +1,25 @@
 import { useState } from "react"
 
-type Props = {}
+const Counter = () => {
 
-const Counter = (props: Props) => {
+  // const state = useState()
 
-  let count = 0
+  // console.log(state[0]);
+  // console.log(state[1]);
 
-  const handleCount = () => {
-    count++
-    console.log(count)
-  }
+  const [count, setCount] = useState(0)
 
-
+  // let count = 0
+  // const handleCount = () => {
+  //   count++
+  //   console.log(count);
+  // }
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={handleCount}>
-        Incrementa 1
-      </button>
+      <div>{count}</div>
+      <button onClick={() => setCount(count + 1)}>Incrementa</button>
     </div>
+
   )
 }
 
