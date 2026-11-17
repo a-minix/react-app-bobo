@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { TypeProduct } from "../data/products";
-import Card from "./Card";
+import CatalogList from "./CatalogList";
 import OrderProducts from "./OrderProducts";
 import Searchbar from "./Searchbar";
 
@@ -76,56 +76,37 @@ export type TypeGroupByOpts = "none" | "price-asc" | "price-desc" | "name-asc" |
 
 const PageCatalog = () => {
 
-  const [orderBy, setOrderBy] = useState<TypeGroupByOpts>("none")
-  const [search, setSearch] = useState("")
-
+  const [prodotti, setProdotti] = useState<TypeProduct[]>(products)
 
   const handleOrderBy = (opt: TypeGroupByOpts) => {
-    setOrderBy(opt)
+    if (opt === "price-asc") {
+      setProdotti([...products].sort((a, b) => a.prices[0] - b.prices[0]))
+    }
+    if (opt === "price-desc") {
+      setProdotti([...products].sort((a, b) => b.prices[0] - a.prices[0]))
+    }
+    if (opt === "name-asc") {
+      setProdotti([...products].sort((a, b) => a.name.localeCompare(b.name)))
+    }
+    if (opt === "name-desc") {
+      setProdotti([...products].sort((a, b) => b.name.localeCompare(a.name)))
+    }
   }
 
   const handleSearch = (input: string) => {
-    setSearch(input)
-  }
-
-  let productsToShow = products
-
-  if (orderBy === "price-asc") {
-    productsToShow = products.sort((a, b) => a.prices[0] - b.prices[0])
-  }
-
-  if (orderBy === "price-desc") {
-    productsToShow = products.sort((a, b) => b.prices[0] - a.prices[0])
-  }
-
-  if (orderBy === "name-asc") {
-    productsToShow = products.sort((a, b) => a.name.localeCompare(b.name))
-  }
-  if (orderBy === "name-desc") {
-    productsToShow = products.sort((a, b) => b.name.localeCompare(a.name))
-  }
-
-  if(search !== "") {
-    productsToShow = products.filter(product => {
-      return product.name.toLocaleLowerCase().includes(search.toLocaleLowerCase())
-    })
+    setProdotti([...products].filter(product => {
+      return product.name.toLocaleLowerCase().includes(input.toLocaleLowerCase())
+    }))
   }
 
   return (
     <div>
-      <h2>{orderBy}</h2>
       <Searchbar handleSearch={handleSearch} />
       <div className="flexsb">
         <h1>Sneakers {products.length} Modelli</h1>
         <OrderProducts handleOrderBy={handleOrderBy} />
       </div>
-      <div className="cards-container">
-        {
-          productsToShow.map((product, index) => (
-            <Card key={product.id} product={product} bgColor={index % 2 ? "red" : "blue"} />
-          ))
-        }
-      </div>
+      <CatalogList products={prodotti} />
     </div>
   )
 }

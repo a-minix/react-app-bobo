@@ -2,7 +2,6 @@ import type { TypeProduct } from "../data/products"
 
 type CardProps = {
   product: TypeProduct;
-  date: Date
 }
 
 const Card = ({product}: CardProps) => {

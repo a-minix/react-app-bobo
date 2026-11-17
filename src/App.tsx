@@ -1,4 +1,3 @@
-import Counter from "./components/Counter"
 import PageCatalog from "./components/PageCatalog"
 
 
