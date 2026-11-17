@@ -11,6 +11,11 @@ export type TypeProduct = {
   limited?: boolean;
 };
 
+export type TypeCartItem = {
+  product: TypeProduct;
+  qty: number;
+}
+
 export const products: TypeProduct[] = [
   {
     id: 'aria-runner',
