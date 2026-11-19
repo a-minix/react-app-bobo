@@ -27,6 +27,7 @@ export const products: TypeProduct[] = [
     rating: 4.6,
     reviews: 128,
     limited: true,
+    imageUrl: "aria"
   },
   {
     id: 'vento-trail',
@@ -37,6 +38,7 @@ export const products: TypeProduct[] = [
     prices: [139],
     rating: 4.4,
     reviews: 76,
+    imageUrl: "vento"
   },
   {
     id: 'lago-low',
@@ -48,6 +50,7 @@ export const products: TypeProduct[] = [
     rating: 4.8,
     reviews: 214,
     limited: true,
+    imageUrl: "lago"
   },
   {
     id: 'cima-pro',
